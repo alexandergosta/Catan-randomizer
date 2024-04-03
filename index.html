@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catan board randomizer</title>
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif; /* Replace 'Arial' with your desired font */
+    }
+    .header {
+        display: block;
+        margin: 5% 15% ;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #04AA6D;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 6px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+</style>
+
+<body>
+    <h1 class="header">Catan board scambler</h1>
+    
+    <button class = "button" id='desertUp'>Move desert up</button>
+    <button class = "button" id='desertDown'>Move desert down</button>
+    <button class = "button" id='scrambleNumbers'>Scramle numbers</button>
+    <button class = "button" id='scrambleTiles'>Scramle tiles</button>
+
+    <canvas id="catan-board" width="800" height="600"></canvas>
+
+    <script type= module src="main.js"></script>
+    <script> src="assignNumbers.js" </script>
+    <script> src="assignNumbers.js" </script>
+
+</body>
+</html>
+<!--
+<h2>set desert location</h2>
+<input type="number" id="desert" min ="0" max="18">
+-->
