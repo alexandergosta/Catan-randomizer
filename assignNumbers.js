@@ -1,19 +1,19 @@
-import NumberCircle from './NumberCircle-class.js';
-import { ctx } from './main.js';
+import { hexagons, numberArray } from './main.js';
 import { shuffleArray } from './shuffleArray.js';
 
-// Assign number function
-export function assignNumbers(numberArray, hexagons, size, desertHex) {
-    //Shuffle numbers
-    shuffleArray(numberArray);
+// Assign numbers function
+export function assignNumbers(numbers) {
+    //Shuffle resoruces for randomness
+    shuffleArray(numbers);
 
+    //Assign resources
     for (let i = 0; i < hexagons.length; i++) {
-        if (hexagons[i].resource === 'desert') {
-            // If the resource is 'desert', continue to the next iteration
-            continue;
+        let number = numbers[i];
+        if (number !== "desert") {
+            hexagons[i].addNumber(number);
+        } else {
+            console.log(`Skipping hexagon ${i + 1} (desert)`);
         }
-        const number = new NumberCircle(hexagons[i].x, hexagons[i].y, size / 2.3, ctx);
-        number.drawNumber(numberArray[i]);
     }
-    console.log("numbers scrambled");
+    console.log("Numbers scrambled");
 }

@@ -1,22 +1,15 @@
-import { resourceColors } from './main.js';
+import { hexagons, resourceColors } from './main.js';
 import { shuffleArray } from './shuffleArray.js';
 
 // Assign resource function
-export function assignResources(resourceArray, hexagons, desertHex) {
-    //Shuffle resoruces
-    shuffleArray(resourceArray);
-    //Remove Desert
-    //hexagons.splice(desertHex-1,1);
-    //hexagons[desertHex].resource = 'desert'
+export function assignResources(resoruces) {
+    //Shuffle resoruces for randomness
+    shuffleArray(resoruces);
 
+    //Assign resources
     for (let i = 0; i < hexagons.length; i++) {
-        /*if (hexagons[i].resource === 'desert') {
-            // If the resource is 'desert', continue to the next iteration
-            continue;
-        }*/
-        //hexagons[i].draw(resourceColors[resourceArray[i]]);
-        hexagons[i].draw();
-        //hexagons[i].resourcetype = resourceArray[i];
+        let resource = resoruces[i];
+        hexagons[i].addResource(resource, resourceColors[resource]);
     }
     console.log("Tiles scrambled");
 }

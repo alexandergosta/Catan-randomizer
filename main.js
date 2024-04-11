@@ -1,19 +1,15 @@
 //Save / load config
 //move desert
 //Change assingResources. add new function hexclass for setting color by resource type
-//import { assignNumbers } from './assignNumbers.js';
+import { assignNumbers } from './assignNumbers.js';
 import { assignResources } from './assignResources.js';
 import { board4p } from './board4p.js';
-//import { adjustDesertPosition } from './moveDesert.js';
+import { moveDesert } from './moveDesert.js';
 
 const size = 60; // Size of the hexagon
 const rows = 5; // Number of rows
 
-let desertHex = 10;
-
-// Calculate the width and height of the board
-const width = size * Math.sqrt(3) * (rows + 0.5);
-const height = size * 1.5 * (rows + 1);
+let desertHex = 9;
 
 const canvas = document.getElementById('catan-board');
 export const ctx = canvas.getContext('2d');
@@ -44,7 +40,6 @@ const numberArray4p = [
     4,4,
     5,5,
     6,6,
-    7,7,
     8,8,
     9,9,
     10,10,
@@ -55,52 +50,45 @@ const numberArray4p = [
 export const hexagons = [];
 
 //4 player setup
-let resourceArray = resourceArray4p;
-let numberArray = numberArray4p;
+export let resourceArray = [...resourceArray4p];
+export let numberArray = [...numberArray4p];
 
-/*
-// Move desert up
-document.getElementById('desertUp').addEventListener('click', () => {
-    // Create an array to store hexagons and their indexes
-
-    //draw board
-    //board4p(size,rows);
-    desertHex = adjustDesertPosition(desertHex, -1);
-    // Assign desert tile
-    //hexagons[desertHex].draw(resourceColors.desert);
-});
-// Move desert down
-document.getElementById('desertDown').addEventListener('click', () => {
-    //draw board
-    //board4p(size,rows);
-    desertHex = adjustDesertPosition(desertHex, 1);
-    // Assign desert tile
-    //hexagons[desertHex].draw(resourceColors.desert);
-});
-*/
+let newResourceArray =[], newNumbersArray = [];
 
 //Draw Board
 board4p(size,rows);
-// Assign desert tile
-hexagons[desertHex].draw(resourceColors.desert); // Change this
-hexagons[desertHex].resource = 'desert';
-hexagons.splice(10, 1);
-console.log(desertHex)
-assignResources(resourceArray,hexagons, desertHex);
-/*
+
+// Center desert tile
+document.getElementById('centreDesert').addEventListener('click', () => {
+    let [newResoruceArray, newNumbersArray] = moveDesert("center");
+    newResourceArray.length = 0;
+    newResourceArray = newResoruceArray;
+    newNumbersArray.length = 0;
+    newNumbersArray = newNumbersArray;
+});
+//Random desert tile
+document.getElementById('randomDesert').addEventListener('click', () => {
+    let [newResoruceArray, newNumbersArray] = moveDesert("random");
+    newResourceArray.length = 0;
+    newResourceArray = newResoruceArray;
+    newNumbersArray.length = 0;
+    newNumbersArray = newNumbersArray;
+});
+console.log(newResourceArray)
 //assign resoruces
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("scrambleTiles").addEventListener("click", function() {
-        assignResources(resourceArray,hexagons, desertHex);
+        assignResources(newResourceArray);
     });
 });
 
 //assign numbers
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("scrambleNumbers").addEventListener("click", function() {
-        assignNumbers(numberArray, hexagons, size, desertHex);
+        assignNumbers(newNumbersArray);
     });
-});*/
+});
+
 /*
 // Initialize an empty adjacency matrix
 const n = hexagons.length; // Number of hexagons
