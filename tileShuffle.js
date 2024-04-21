@@ -12,6 +12,8 @@ function shuffle(array) {
     return array;
 }
 
+// The shuffleButton function selects all polygons except the polygon with the class "desert"
+// and randomly swaps their classes.
 document.getElementById('shuffleButton').onclick = function() {
         const polygons = document.querySelectorAll('polygon[id^="hex"]');
         const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');
@@ -132,35 +134,16 @@ document.getElementById('placeDesertCenter').onclick = function() {
     }
 };
 
-//Shuffle numbers button
-document.getElementById('shuffleNumbers').addEventListener('click', function() {
-    // Fetch all number elements except the one with class 'desertNumber'
-    const numberElements = Array.from(document.querySelectorAll('[id^="numgroup"]:not(.desertNumber)'));
-    // Extract the numbers and corresponding text elements
-    const numbers = numberElements.map(el => {
-        const numberId = el.id;
-        const textElement = document.getElementById(`numtile${numberId.substring(8)}`);
-        return {
-            numberId,
-            textElement,
-            originalText: textElement.textContent
-        };
-    });
-
-    // Shuffle the array of numbers
-    shuffle(numbers)
-
-    // Assign the shuffled numbers to the text elements
-    numbers.forEach((item, index) => {
-        // Use the shuffled originalText from the corresponding shuffled position
-        item.textElement.textContent = numbers[index].originalText;
-
-        // Set classes based on the number immediately after updating the text
-        if (item.textElement.textContent === '6' || item.textElement.textContent === '8') {
-            item.textElement.className = 'redtxt';
-        } else {
-            item.textElement.className = 'blacktxt';
-        }
-    });
-
-});
+// Shuffle numbers button
+document.getElementById('shuffleNumbers').onclick = function() {
+  const numberElements = Array.from(document.querySelectorAll
+    ('text[id^="numtile"]:not([text-anchor="X"])')).filter(element => element.textContent !== 'X');
+  const numbers = numberElements.map(element => element.textContent);
+  shuffle(numbers)
+  console.log(numbers);
+  numberElements.forEach((element, index) => {
+    numberElements[index].textContent = numbers[index];
+    numberElements[index].setAttribute('class', numbers[index] === "6" || 
+    numbers[index] === "8" ? 'redtxt' : 'blacktxt');   
+  });
+};

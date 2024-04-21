@@ -11,19 +11,19 @@ h1{
 
 .button-container {
     display: grid;
-    grid-template-columns: repeat(2, 0.8fr);
-    gap: 10% 5%; /* Row gap, column gap */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20% 5%; /* Row gap, column gap */
     padding-left: 10%;
+    padding-right: 10%;
 }
 
 .svg-container {
     flex: 1;
-    width: 95vw;
-    max-height: 95vh; 
+    width: 100vw;
+    max-height: 100vh; 
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-left: 2.5%;
 
 }
 
@@ -45,9 +45,9 @@ h1{
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
-  font-size: 2vw; /* Use viewport width for responsive font size */
+  font-size: 3vw; /* Use viewport width for responsive font size */
   padding: 1vw 2vw; /* Use viewport width for responsive padding */
-  line-height: 3vw; /* Use viewport width for responsive line height */
+  line-height: 5vw; /* Use viewport width for responsive line height */
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -63,10 +63,12 @@ h1{
   box-shadow: #422800 0.2vw 0.2vw 0 0; /* Smaller shadow on click for responsiveness */
   transform: translate(0.2vw, 0.2vw); /* Small movement on click for responsiveness */
 }
+
 /*ports*/
 .porttxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 22px;
+  font-size: 30px;
+  text-align: center;
   font-weight: 700;
 }
 
@@ -78,10 +80,11 @@ h1{
   stroke-miterlimit: 10;
   stroke-width: 1px;
   stroke: #000;
+  
 }
 .blacktxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 700;
   text-align: center;
   text-anchor: middle;
@@ -90,7 +93,7 @@ h1{
 
 .redtxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   fill: #c00;
   text-anchor: middle;
