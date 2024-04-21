@@ -2,7 +2,8 @@
 Functions for shuffling the tiles and numbers.
  */
 
-//functions for shuffling classes, swapping classes, and placing a class in the center.
+//function shuffle that shuffles the elements of an array using the Fisher-Yates algorithm. 
+//It randomly swaps elements in the array to achieve the shuffling effect.
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -11,7 +12,6 @@ function shuffle(array) {
     return array;
 }
 
-//The shuffleButton.onclick function shuffles the classes of polygons with IDs starting with "hex" and not having the class "desert".
 document.getElementById('shuffleButton').onclick = function() {
         const polygons = document.querySelectorAll('polygon[id^="hex"]');
         const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');

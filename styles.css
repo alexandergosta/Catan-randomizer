@@ -8,21 +8,22 @@ body {
 h1{
     padding-left: 10%;
 }
+
 .button-container {
-    display: flex;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 0.8fr);
+    gap: 10% 5%; /* Row gap, column gap */
     padding-left: 10%;
 }
 
 .svg-container {
     flex: 1;
-    width: 90vw;
-    max-height: 80vh; 
+    width: 95vw;
+    max-height: 95vh; 
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-left: 5%;
+    padding-left: 2.5%;
 
 }
 
