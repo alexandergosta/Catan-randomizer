@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1087 1087">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-width: 6px;
+      }
+
+      .cls-1, .cls-2, .cls-4, .cls-5, .cls-6, .cls-8 {
+        stroke: #fde8c2;
+      }
+
+      .cls-1, .cls-9 {
+        fill: #bdacb4;
+      }
+
+      .cls-10, .cls-11, .cls-12, .cls-9, .cls-13, .cls-14 {
+        stroke-width: 0px;
+      }
+
+      .cls-10, .cls-8 {
+        fill: #be7231;
+      }
+
+      .cls-2, .cls-14 {
+        fill: #487138;
+      }
+
+      .cls-3 {
+        stroke: #000;
+      }
+
+      .cls-3, .cls-12 {
+        fill: #fde8c2;
+      }
+
+      .cls-11, .cls-4 {
+        fill: #91c045;
+      }
+
+      .cls-15 {
+        font-size: 22px;
+      }
+
+      .cls-15, .cls-16 {
+        font-family: Calibri-Bold, Calibri;
+        font-weight: 700;
+      }
+
+      .cls-5, .cls-13 {
+        fill: #ffd953;
+      }
+
+      .cls-6 {
+        fill: #e2bd7a;
+      }
+
+      .cls-16 {
+        fill: #c00;
+        font-size: 24px;
+      }
+
+      .cls-7 {
+        fill: #01a2e0;
+        stroke: #017aa8;
+      }
+    </style>
+  </defs>
+  <g id="Water">
+    <polygon id="water6" class="cls-7" points="315 240.5 231.042 192.364 28.313 543.5 80.958 634.684 165 586.5 165 500.199 240 456.801 240 370.199 315 326.801 315 240.5"/>
+    <polygon id="water5" class="cls-7" points="284.656 987.5 80.958 634.684 165 586.5 238.956 629.5 240 716.801 315 760.199 315 846.801 390 890.103 390 987.5 284.656 987.5"/>
+    <polygon id="water4" class="cls-7" points="540 890.102 465 846.801 390 890.103 390 987.5 797.344 987.5 850.461 895.498 765 846.5 690 890.103 615 846.801 540 890.102"/>
+    <polygon id="water3" class="cls-7" points="840 716.801 765 760.199 765 846.5 850.461 895.498 1053.687 543.5 1000.296 451.024 915 500.5 915 586.801 840 630.103 840 716.801"/>
+    <polygon id="water2" class="cls-7" points="1000.296 451.024 797.344 99.5 690 99.5 690 196.5 765 240.199 765 326.801 840 370.199 840 456.801 915 500.5 1000.296 451.024"/>
+    <polygon id="water1" class="cls-7" points="690 99.5 284.656 99.5 231.042 192.364 315 240.5 390 196.897 465 240.199 540 196.897 615 240.199 690 196.5 690 99.5"/>
+  </g>
+  <g id="Ports">
+    <polygon class="cls-13" points="614.769 150.582 540.65 193.375 614.769 236.168 614.769 150.582"/>
+    <polygon class="cls-9" points="842.769 282.582 768.65 325.375 842.769 368.168 842.769 282.582"/>
+    <polygon class="cls-12" points="313.196 150.322 313.196 238.81 389.828 194.566 313.196 150.322"/>
+    <polygon class="cls-12" points="993.828 542.566 917.196 498.322 917.196 586.81 993.828 542.566"/>
+    <polygon class="cls-12" points="311.834 938.178 389.744 893.197 311.834 848.216 311.834 938.178"/>
+    <polygon class="cls-12" points="616.284 937.81 616.284 849.322 539.651 893.566 616.284 937.81"/>
+    <polygon class="cls-11" points="843.284 806.81 843.284 718.322 766.651 762.566 843.284 806.81"/>
+    <polygon class="cls-14" points="160.651 412.566 237.284 456.81 237.284 368.322 160.651 412.566"/>
+    <polygon class="cls-10" points="160.651 675.566 237.284 719.81 237.284 631.322 160.651 675.566"/>
+    <text class="cls-15" transform="translate(323.646 199.404)"><tspan x="0" y="0">3:1</tspan></text>
+    <text class="cls-15" transform="translate(929.646 549.404)"><tspan x="0" y="0">3:1</tspan></text>
+    <text class="cls-15" transform="translate(577.646 899.404)"><tspan x="0" y="0">3:1</tspan></text>
+    <text class="cls-15" transform="translate(323.646 899.404)"><tspan x="0" y="0">3:1</tspan></text>
+    <text class="cls-15" transform="translate(576.146 199.404)"><tspan x="0" y="0">1:2</tspan></text>
+    <text class="cls-15" transform="translate(804.146 331.404)"><tspan x="0" y="0">1:2</tspan></text>
+    <text class="cls-15" transform="translate(804.146 769.404)"><tspan x="0" y="0">2:1</tspan></text>
+    <text class="cls-15" transform="translate(197.146 682.404)"><tspan x="0" y="0">2:1</tspan></text>
+    <text class="cls-15" transform="translate(197.146 419.404)"><tspan x="0" y="0">2:1</tspan></text>
+  </g>
+  <g id="Board">
+    <polygon id="hex19" class="cls-4" points="615 760.199 615 846.801 690 890.103 765 846.801 765 760.199 690 716.898 615 760.199"/>
+    <polygon id="hex18" class="cls-5" points="465 760.199 465 846.801 540 890.102 615 846.801 615 760.199 540 716.897 465 760.199"/>
+    <polygon id="hex17" class="cls-8" points="315 760.199 315 846.801 390 890.103 465 846.801 465 760.199 390 716.897 315 760.199"/>
+    <polygon id="hex16" class="cls-4" points="690 630.199 690 716.801 765 760.103 840 716.801 840 630.199 765 586.898 690 630.199"/>
+    <polygon id="hex15" class="cls-5" points="540 630.199 540 716.801 615 760.103 690 716.801 690 630.199 615 586.898 540 630.199"/>
+    <polygon id="hex14" class="cls-1" points="390 630.199 390 716.801 465 760.103 540 716.801 540 630.199 465 586.897 390 630.199"/>
+    <polygon id="hex13" class="cls-2" points="240 630.199 240 716.801 315 760.102 390 716.801 390 630.199 315 586.897 240 630.199"/>
+    <polygon id="hex12" class="cls-1" points="915 586.801 915 500.199 840 456.897 765 500.199 765 586.801 840 630.103 915 586.801"/>
+    <polygon id="hex11" class="cls-2" points="765 586.801 765 500.199 690 456.897 615 500.199 615 586.801 690 630.103 765 586.801"/>
+    <polygon id="hex10" class="cls-6" points="615 586.801 615 500.199 540 456.897 465 500.199 465 586.801 540 630.103 615 586.801"/>
+    <polygon id="hex9" class="cls-2" points="465 586.801 465 500.199 390 456.897 315 500.199 315 586.801 390 630.103 465 586.801"/>
+    <polygon id="hex8" class="cls-5" points="315 586.801 315 500.199 240 456.897 165 500.199 165 586.801 240 630.103 315 586.801"/>
+    <polygon id="hex7" class="cls-8" points="840 456.801 840 370.199 765 326.897 690 370.199 690 456.801 765 500.103 840 456.801"/>
+    <polygon id="hex6" class="cls-4" points="690 456.801 690 370.199 615 326.897 540 370.199 540 456.801 615 500.103 690 456.801"/>
+    <polygon id="hex5" class="cls-8" points="540 456.801 540 370.199 465 326.897 390 370.199 390 456.801 465 500.103 540 456.801"/>
+    <polygon id="hex4" class="cls-5" points="390 456.801 390 370.199 315 326.897 240 370.199 240 456.801 315 500.103 390 456.801"/>
+    <polygon id="hex3" class="cls-2" points="765 326.801 765 240.199 690 196.897 615 240.199 615 326.801 690 370.103 765 326.801"/>
+    <polygon id="hex2" class="cls-4" points="615 326.801 615 240.199 540 196.897 465 240.199 465 326.801 540 370.103 615 326.801"/>
+    <polygon id="hex1" class="cls-1" points="465 326.801 465 240.199 390 196.897 315 240.199 315 326.801 390 370.103 465 326.801"/>
+  </g>
+  <g id="numbers">
+    <g id="num19">
+      <circle class="cls-3" cx="689.75" cy="803.75" r="24"/>
+      <text id="numbertile19" class="cls-15" transform="translate(678.6 811.208)"><tspan x="0" y="0">11</tspan></text>
+    </g>
+    <g id="num18">
+      <circle class="cls-3" cx="539.75" cy="803.75" r="24"/>
+      <text id="numbertile18" class="cls-16" transform="translate(533.668 811.886)"><tspan x="0" y="0">6</tspan></text>
+    </g>
+    <g id="num17">
+      <circle class="cls-3" cx="389.75" cy="803.75" r="24"/>
+      <text id="numbertile17" class="cls-15" transform="translate(384.175 811.208)"><tspan x="0" y="0">5</tspan></text>
+    </g>
+    <g id="num16">
+      <circle class="cls-3" cx="765.353" cy="673.658" r="24"/>
+      <text id="numbertile16" class="cls-15" transform="translate(759.778 681.116)"><tspan x="0" y="0">5</tspan></text>
+    </g>
+    <g id="num15">
+      <circle class="cls-3" cx="615.353" cy="673.658" r="24"/>
+      <text id="numbertile15" class="cls-15" transform="translate(609.778 681.116)"><tspan x="0" y="0">4</tspan></text>
+    </g>
+    <g id="num14">
+      <circle class="cls-3" cx="464.853" cy="673.658" r="24"/>
+      <text id="numbertile14" class="cls-15" transform="translate(459.278 681.116)"><tspan x="0" y="0">3</tspan></text>
+    </g>
+    <g id="num13">
+      <circle class="cls-3" cx="314.853" cy="673.658" r="24"/>
+      <text id="numbertile13" class="cls-16" transform="translate(308.771 681.794)"><tspan x="0" y="0">8</tspan></text>
+    </g>
+    <g id="num12">
+      <circle class="cls-3" cx="840.25" cy="543.75" r="24"/>
+      <text id="numbertile12" class="cls-16" transform="translate(834.168 551.886)"><tspan x="0" y="0">8</tspan></text>
+    </g>
+    <g id="num11">
+      <circle class="cls-3" cx="689.75" cy="543.75" r="24"/>
+      <text id="numbertile11" class="cls-15" transform="translate(684.175 551.208)"><tspan x="0" y="0">3</tspan></text>
+    </g>
+    <g id="num10">
+      <circle class="cls-3" cx="539.75" cy="543.75" r="24"/>
+      <text id="numbertile10" class="cls-15" transform="translate(533.691 551.208)"><tspan x="0" y="0">X</tspan></text>
+    </g>
+    <g id="num9">
+      <circle class="cls-3" cx="390.25" cy="543.75" r="24"/>
+      <text id="numbertile9" class="cls-15" transform="translate(379.1 551.208)"><tspan x="0" y="0">11</tspan></text>
+    </g>
+    <g id="num8">
+      <circle class="cls-3" cx="239.75" cy="543.75" r="24"/>
+      <text id="numbertile8" class="cls-15" transform="translate(234.175 551.208)"><tspan x="0" y="0">9</tspan></text>
+    </g>
+    <g id="num7">
+      <circle class="cls-3" cx="765.25" cy="413.5" r="24"/>
+      <text id="numbertile7" class="cls-15" transform="translate(754.1 420.958)"><tspan x="0" y="0">10</tspan></text>
+    </g>
+    <g id="num6">
+      <circle class="cls-3" cx="615.25" cy="413.25" r="24"/>
+      <text id="numbertile6" class="cls-15" transform="translate(609.675 420.708)"><tspan x="0" y="0">4</tspan></text>
+    </g>
+    <g id="num5">
+      <circle class="cls-3" cx="465.25" cy="413.25" r="24"/>
+      <text id="numbertile5" class="cls-16" transform="translate(459.168 421.386)"><tspan x="0" y="0">6</tspan></text>
+    </g>
+    <g id="num4">
+      <circle class="cls-3" cx="315.25" cy="413.25" r="24"/>
+      <text id="numbertile4" class="cls-15" transform="translate(304.1 420.708)"><tspan x="0" y="0">12</tspan></text>
+    </g>
+    <g id="num3">
+      <circle class="cls-3" cx="689.75" cy="283.75" r="24"/>
+      <text id="numbertile3" class="cls-15" transform="translate(684.175 291.208)"><tspan x="0" y="0">9</tspan></text>
+    </g>
+    <g id="num2">
+      <circle class="cls-3" cx="540.25" cy="283.75" r="24"/>
+      <text id="numbertile2" class="cls-15" transform="translate(534.675 291.208)"><tspan x="0" y="0">2</tspan></text>
+    </g>
+    <g id="num1">
+      <circle class="cls-3" cx="390" cy="283.5" r="24"/>
+      <text id="numbertile1" class="cls-15" transform="translate(378.85 290.958)"><tspan x="0" y="0">10</tspan></text>
+    </g>
+  </g>
+</svg>

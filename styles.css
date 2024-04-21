@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    flex-direction: column; /* Ensures vertical stacking of elements */
+    margin: 0; /* Removes default margin */
+    height: 100vh; /* Full viewport height */
+    background-color: #e2bd7a;
+}
+h1{
+    padding-left: 10%;
+}
+.button-container {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2%;
+    padding-left: 10%;
+}
+
+.svg-container {
+    flex: 1;
+    width: 90vw;
+    max-height: 80vh; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-left: 5%;
+
+}
+
+#boardFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* buttons */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 3vw; /* Use viewport width for responsive border radius */
+  box-shadow: #422800 0.5vw 0.5vw 0 0; /* Responsive shadow size */
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 2vw; /* Use viewport width for responsive font size */
+  padding: 1vw 2vw; /* Use viewport width for responsive padding */
+  line-height: 3vw; /* Use viewport width for responsive line height */
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 0.2vw 0.2vw 0 0; /* Smaller shadow on click for responsiveness */
+  transform: translate(0.2vw, 0.2vw); /* Small movement on click for responsiveness */
+}
+/*ports*/
+.porttxt {
+  font-family: Calibri-Bold, Calibri;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+
+/*num styles*/
+
+.numcircle {
+  fill: #fde8c2;
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
+  stroke: #000;
+}
+.blacktxt {
+  font-family: Calibri-Bold, Calibri;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  text-anchor: middle;
+
+}
+
+.redtxt {
+  font-family: Calibri-Bold, Calibri;
+  font-size: 24px;
+  font-weight: 700;
+  fill: #c00;
+  text-anchor: middle;
+
+}
+
+/*desert style*/
+.desertNumber {
+  display: none;
+}
+
+/*hex styles*/
+
+.rock, .wood, .sheep, .wheat, .desert, .water, .clay, .neutral {
+    stroke-miterlimit: 10;
+    stroke-width: 6px;
+    stroke: #fde8c2;
+}
+
+.rock {
+fill: #bdacb4;
+}
+
+.neutral {
+  fill: #fde8c2;
+  }
+
+.wood {
+fill: #487138;
+}
+
+.sheep {
+fill: #91c045;
+}
+
+.wheat {
+fill: #ffd953;
+}
+
+.desert {
+fill: #e2bd7a;
+}
+
+.clay {
+fill: #be7231;
+}
+
+.water {
+fill: #01a2e0;
+stroke: #017aa8;
+}
