@@ -4,9 +4,70 @@ body {
     margin: 0; /* Removes default margin */
     height: 100vh; /* Full viewport height */
     background-color: #e2bd7a;
+    font-family: "calibri";
 }
-h1{
-    padding-left: 10%;
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Calibri-Bold, Calibri;
+    font-size: medium;
+    line-height: 1.2;
+    color: #422800;
+}
+
+p {
+  font-size: small;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.slidecontainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(6, auto);
+  justify-content: center;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.value {
+  text-align: left;
+  font-weight: bold;
+  font-size: medium;
+  position: relative;
+}
+input[type="range"] {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #422800;
+  width: 80%;
+  height: 1%;
+  border-radius: 5px;
+  outline: 0;
+  position: relative;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 0.25em solid white;
+  cursor: pointer;
+}
+
+.msg-container {
+  display: flex;
+  padding-top: 2%;
+  justify-content: center;
+  align-items: center;
+  font-family: Calibri;
+  font-size: 3vw;
+  color: #710000;
 }
 
 .button-container {
@@ -20,19 +81,11 @@ h1{
 .svg-container {
     flex: 1;
     width: 100vw;
-    max-height: 100vh; 
+    margin-top: -5%; 
     justify-content: center;
     align-items: center;
     position: relative;
 
-}
-
-#boardFrame {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /* buttons */
@@ -67,7 +120,7 @@ h1{
 /*ports*/
 .porttxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 30px;
+  font-size: 45px;
   text-align: center;
   font-weight: 700;
 }
@@ -84,7 +137,7 @@ h1{
 }
 .blacktxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 30px;
+  font-size: 45px;
   font-weight: 700;
   text-align: center;
   text-anchor: middle;
@@ -93,7 +146,7 @@ h1{
 
 .redtxt {
   font-family: Calibri-Bold, Calibri;
-  font-size: 30px;
+  font-size: 45px;
   font-weight: 700;
   fill: #c00;
   text-anchor: middle;
