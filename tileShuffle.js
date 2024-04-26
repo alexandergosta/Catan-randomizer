@@ -57,7 +57,19 @@ const numAdjecency4p = {
     "numtile19": ["numtile15", "numtile16", "numtile18"]
 }
 
-const numbers4p = ['10', '2', '9', '12', '6', '4', '10', '9', '11', '3', '8', '8', '3', '4', '5', '5', '6', '11']
+const numbers4p = 
+[
+'2',
+'3','3',
+'4','4',
+'5','5', 
+'6','6',
+'8', '8',
+'9', '9',
+'10','10',
+'11','11',
+'12'
+]
 
 // The shuffleButton function selects all polygons except the polygon with the class "desert"
 // and randomly swaps their classes.
@@ -181,57 +193,87 @@ document.getElementById('placeDesertCenter').onclick = function() {
     }
 };
 
+// Shuffle numbers button
 document.getElementById('shuffleNumbers').onclick = function() {
-    const numberElements = Array.from(document.querySelectorAll('text[id^="numtile"]:not([text-anchor="X"])')).filter(element => element.textContent !== 'X');
-    const numbers = [...numbers4p];
-    document.getElementById('msg').textContent = "";
+  const textElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent !== 'X');
+  const numbers = [...numbers4p];
+  const mode = document.getElementById('numSlider').value
+  document.getElementById('msg').textContent = "";
+  shuffle(numbers);
+  console.log(mode);
+  textElements.forEach((element) => {element.textContent = "ERROR"});
 
-    let numbersCopy = [...numbers];
-    let counter = 0;
-    const MAX_COUNTER = numbersCopy.length;
+  // Assign the shuffled numbers to the text elements
 
-    while (counter < MAX_COUNTER) {
-        shuffle(numbersCopy);
-
-        let assigned = true;
-        numberElements.forEach((element) => {
-            const adjecentElementsIds = numAdjecency4p[element.id];
-            const adjecentElements = adjecentElementsIds.map(id => document.getElementById(id));
-
-            assigned = adjecentElements.every(adjElement => {
-                if (adjElement.textContent === numbersCopy[counter]) {
-                    return false;
-                } else if (numbersCopy[counter] === "8" && adjElement.textContent.includes("6")) {
-                    return false;
-                } else if (numbersCopy[counter] === "6" && adjElement.textContent.includes("8")) {
-                    return false;
-                }
-
-                return true;
-            });
-
-            if (assigned) {
-                element.textContent = numbersCopy[counter];
-                element.setAttribute('class', numbersCopy[counter] === "6" || numbersCopy[counter] === "8" ? 'redtxt' : 'blacktxt');
-                counter++;
-            } else {
-                assigned = false;
-            }
-        });
-
-        if (assigned) {
-            break;
-        } else {
-            counter = 0;
-
+  textElements.forEach((element) => {
+    const adjacentIds = numAdjecency4p[element.id];
+    const adjacentElements = adjacentIds.map(id => document.getElementById(id));
+    
+    if (mode === '1') {
+    // all random
+        for (let i = 0; i < numbers.length; i++) {
+        element.textContent = numbers[i];
+        element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+        numbers.splice(i, 1);
+        break;
         }
-
+    } else if (mode === '2') {
+        // 6,8 and 2,12 apart
+        for (let i = 0; i < numbers.length; i++) {
+        
+            if (numbers[i] === '6') {
+              if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
+                adjElement.textContent.includes('8'))) {
+                continue;
+              }
+            } else if (numbers[i] === '8') {
+              if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
+                adjElement.textContent.includes('8'))) {
+                continue;
+              }
+            } else if (numbers[i] === '2') {
+                if (adjacentElements.some(adjElement => adjElement.textContent.includes('12'))) {
+                  continue;
+                }
+            } else if (numbers[i] === '12') {
+                if (adjacentElements.some(adjElement => adjElement.textContent.includes('2'))) {
+                  continue;
+                }
+            }
+            element.textContent = numbers[i];
+            element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+            numbers.splice(i, 1);
+            break;
+        }
+    } else if (mode === '3') {
+        // all apart
+        for (let i = 0; i < numbers.length; i++) {
+        
+            if (adjacentElements.every(adjElement => adjElement.textContent !== numbers[i] && (numbers[i] !== '6' || 
+              !adjElement.textContent.includes('8')) && (numbers[i] !== '8' ||
+              !adjElement.textContent.includes('6')))) {
+              element.textContent = numbers[i];
+              element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+              numbers.splice(i, 1);
+              break;
+            }
+            }   
     }
-    if (numbersCopy.length === 0) {
-        document.getElementById('msg').textContent = "Could not assign numbers properly. Try again.";
-        console.error("Could not assign numbers properly. Infinite loop detected.");
-    }
+    });
+  const errorElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent === 'ERROR');
+  if (errorElements.length > 0) {
+    console.log(numbers)
+    errorElements.forEach((element, index) => {
+        element.textContent = numbers[index];
+        element.setAttribute('class', numbers[index] === '6' || numbers[index] === '8' ? 'redtxt' : 'blacktxt');
+        document.getElementById('msg').textContent = "Some numbers could not be assigned properly. Try again.";
+    });
+  } else {
+    document.getElementById('msg').textContent = "Numbers successfully shuffled.";
+  }
 }
+
+
 //Sliders
 const sliders = document.querySelectorAll(".slidecontainer input[type='range']");
 
@@ -244,14 +286,13 @@ sliders.forEach(function(slider) {
     }  else if (this.id === 'hexSlider' && this.value === '1') {
         value.textContent = "all random";
     } else if (this.id === 'numSlider' && this.value === '2') {
-      value.textContent = "not 6,8 and 2,12";
+      value.textContent = "6,8 and 2,12 apart";
     }  else if (this.id === 'hexSlider' && this.value === '2') {
-        value.textContent = "no hexes";
+        value.textContent = "resources apart";
     } else if (this.id === 'numSlider' && this.value === '3') {
-      value.textContent = "no adjecent";
+      value.textContent = "all apart";
     }  else if (this.id === 'hexSlider' && this.value === '3') {
-        value.textContent = "no hexes or ports"
+        value.textContent = "resources and ports apart"
   }
 });
-
-});
+})

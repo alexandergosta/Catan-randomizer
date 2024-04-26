@@ -37,63 +37,56 @@ document.getElementById('shuffleNumbers').addEventListener('click', function() {
 
 
 
-// Shuffle numbers button
+
+
 document.getElementById('shuffleNumbers').onclick = function() {
-    const numberElements = Array.from(document.querySelectorAll
-    ('text[id^="numtile"]:not([text-anchor="X"])')).filter(element => element.textContent !== 'X');
+    const numberElements = Array.from(document.querySelectorAll('text[id^="numtile"]:not([text-anchor="X"])')).filter(element => element.textContent !== 'X');
     const numbers = [...numbers4p];
     document.getElementById('msg').textContent = "";
-    shuffle(numbers);
 
     let numbersCopy = [...numbers];
+    let counter = 0;
+    const MAX_COUNTER = numbersCopy.length;
 
-    numberElements.forEach((element) => {
-        element.textContent = "Error";
-    });
+    while (counter < MAX_COUNTER) {
+        shuffle(numbersCopy);
 
-    // Assign the shuffled numbers to the text elements
-    numberElements.forEach((element, index) => {
-        
-        const adjecentElementsIds = numAdjecency4p[element.id];
-        const adjecentElements = adjecentElementsIds.map(id => document.getElementById(id));
-        
-        let assigned = false;
-        let counter = 0;
-        const MAX_COUNTER = numbersCopy.length;
-        while (!assigned && counter < MAX_COUNTER) {
-            const num = numbersCopy[counter];
-            console.log("testnumer: ",num);
+        let assigned = true;
+        numberElements.forEach((element) => {
+            const adjecentElementsIds = numAdjecency4p[element.id];
+            const adjecentElements = adjecentElementsIds.map(id => document.getElementById(id));
+
             assigned = adjecentElements.every(adjElement => {
-                if (adjElement.textContent === num) {
+                if (adjElement.textContent === numbersCopy[counter]) {
+                    return false;
+                } else if (numbersCopy[counter] === "8" && adjElement.textContent.includes("6")) {
+                    return false;
+                } else if (numbersCopy[counter] === "6" && adjElement.textContent.includes("8")) {
                     return false;
                 }
-                else if (num === "8" && adjElement.textContent.includes("6")) {
-                    return false;
-                }
-                else if (num === "6" && adjElement.textContent.includes("8")) {
-                    return false;
-                }
-                
-                return adjElement.textContent !== num;
+
+                return true;
             });
-            if (!assigned) {
-                counter = (counter + 1);
-                if (counter >= MAX_COUNTER) {
-                    document.getElementById('msg').textContent = "Could not assign numbers properly. Try again.";
-                    console.error("Could not assign numbers properly. Infinite loop detected.");
-                    break;
-                }
+
+            if (assigned) {
+                element.textContent = numbersCopy[counter];
+                element.setAttribute('class', numbersCopy[counter] === "6" || numbersCopy[counter] === "8" ? 'redtxt' : 'blacktxt');
+                counter++;
+            } else {
+                assigned = false;
             }
-        }
+        });
+
         if (assigned) {
-            console.log("assigned: ",numbersCopy[counter], " to ", element.id);
-            element.textContent = numbersCopy[counter];
+            break;
+        } else {
+            counter = 0;
 
-            element.setAttribute('class', numbersCopy[counter] === "6" || 
-            numbersCopy[counter] === "8" ? 'redtxt' : 'blacktxt');
+        }
 
-            numbersCopy.splice(counter, 1);
-            
-        };
-    });
-};
+    }
+    if (numbersCopy.length === 0) {
+        document.getElementById('msg').textContent = "Could not assign numbers properly. Try again.";
+        console.error("Could not assign numbers properly. Infinite loop detected.");
+    }
+}
