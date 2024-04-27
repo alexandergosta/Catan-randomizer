@@ -62,7 +62,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 .msg-container {
   display: flex;
-  padding-top: 2%;
   justify-content: center;
   align-items: center;
   font-family: Calibri;
@@ -76,6 +75,7 @@ input[type="range"]::-webkit-slider-thumb {
     gap: 20% 5%; /* Row gap, column gap */
     padding-left: 10%;
     padding-right: 10%;
+    padding-bottom: 4%;
 }
 
 .svg-container {

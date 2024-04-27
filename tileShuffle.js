@@ -57,6 +57,14 @@ const numAdjecency4p = {
     "numtile19": ["numtile15", "numtile16", "numtile18"]
 }
 
+const portAdjecency4p = {
+    "wheat": ["hex2", "hex3"],
+    "wood": ["hex4", "hex8"],
+    "rock": ["hex3", "hex7"],
+    "sheep": ["hex16", "hex19"],
+    "clay": ["hex8", "hex13"],
+}
+
 const numbers4p = 
 [
 '2',
@@ -73,23 +81,76 @@ const numbers4p =
 
 // The shuffleButton function selects all polygons except the polygon with the class "desert"
 // and randomly swaps their classes.
+// The shuffleButton function selects all polygons except the polygon with the class "desert"
+// and randomly swaps their classes.
 document.getElementById('shuffleButton').onclick = function() {
-        const polygons = document.querySelectorAll('polygon[id^="hex"]');
-        const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');
-        const classes = filteredPolygons.map(poly => poly.getAttribute('class'));
-        const shuffledClasses = shuffle(classes);
+  const polygons = document.querySelectorAll('polygon[id^="hex"]');
+  const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');
+  const classes = filteredPolygons.map(poly => poly.getAttribute('class'));
+  const shuffledClasses = shuffle(classes);
+  const mode = document.getElementById('hexSlider').value;
 
-        let shuffledIndex = 0;
-        polygons.forEach((polygon) => {
-            if (polygon.getAttribute('class') !== 'desert') {
-                polygon.setAttribute('class', shuffledClasses[shuffledIndex]);
-                shuffledIndex++;
-            }
-        });
-    };
+  filteredPolygons.forEach((polygon) => {
+    polygon.setAttribute('class', "");
+  });
 
-// The shuffleDesert function randomly selects a polygon from a specific list and swaps its class with 
-// the class of the polygon with the "desert" class.
+  // Assign the shuffled classes to the polygons
+  let unassignedPolygons = [];
+  let shuffledIndex = 0;
+  filteredPolygons.forEach((polygon) => {
+    
+    if (mode === '1') {
+      polygon.setAttribute('class', shuffledClasses[shuffledIndex]);
+      shuffledIndex++;
+    } else if (mode === '2') {
+      const adjacentIds = hexAdjecency4p[polygon.id];
+      const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
+      let assignedClass = false;
+
+      shuffledClasses.some((shuffledClass) => {
+        if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass)) {
+          polygon.setAttribute('class', shuffledClass);
+          assignedClass = true;
+          shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
+          return true; // Exit the loop once a class is assigned
+        }
+      });
+      if (!assignedClass) {
+        unassignedPolygons.push(polygon);
+      }
+    } else if (mode === '3') {
+      const adjacentIds = hexAdjecency4p[polygon.id];
+      const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
+      let assignedClass = false;
+
+      shuffledClasses.some((shuffledClass) => {
+        if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass) &&
+            !(shuffledClass in portAdjecency4p && portAdjecency4p[shuffledClass].includes(polygon.id))) {
+          polygon.setAttribute('class', shuffledClass);
+          assignedClass = true;
+          shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
+          return true; // Exit the loop once a class is assigned
+        }
+      });
+      if (!assignedClass) {
+        unassignedPolygons.push(polygon);
+      }
+    }
+
+    if (unassignedPolygons.length > 0) {
+      unassignedPolygons.forEach((poly, index) => {
+        poly.setAttribute('class', shuffledClasses[index]);
+      })
+      document.getElementById('msg').textContent = shuffledClasses.length + " resources could not be assigned properly. Try again.";
+    } else {
+      document.getElementById('msg').textContent = "Resources successfully shuffled.";
+    }
+    
+  });
+  
+}
+
+// Shuffle Desert 
 document.getElementById('shuffleDesertButton').onclick = function() {
     const specificIds = ['hex5', 'hex6', 'hex9', 'hex11', 'hex14', 'hex15', 'hex10'];
     const specificPolygons = Array.from(document.querySelectorAll('polygon')).filter(poly => specificIds.includes(poly.id));
@@ -144,9 +205,9 @@ document.getElementById('shuffleDesertButton').onclick = function() {
         console.error('Text elements corresponding to the polygons could not be found.');
     }
 
-    };
+};
 
-//The placeDesertCenter.onclick function swaps the class of the polygon with ID "hex10" with the class of the polygon with the "desert" class.
+//Center desert
 document.getElementById('placeDesertCenter').onclick = function() {
     const centerHex = document.getElementById('hex10');
     const currentDesert = document.querySelector('polygon.desert');
@@ -266,7 +327,7 @@ document.getElementById('shuffleNumbers').onclick = function() {
     errorElements.forEach((element, index) => {
         element.textContent = numbers[index];
         element.setAttribute('class', numbers[index] === '6' || numbers[index] === '8' ? 'redtxt' : 'blacktxt');
-        document.getElementById('msg').textContent = "Some numbers could not be assigned properly. Try again.";
+        document.getElementById('msg').textContent = numbers.length + " numbers could not be assigned properly. Try again.";
     });
   } else {
     document.getElementById('msg').textContent = "Numbers successfully shuffled.";
