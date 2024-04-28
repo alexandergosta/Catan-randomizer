@@ -65,8 +65,7 @@ const portAdjecency4p = {
     "clay": ["hex8", "hex13"],
 }
 
-const numbers4p = 
-[
+const numbers4p = [
 '2',
 '3','3',
 '4','4',
@@ -79,77 +78,81 @@ const numbers4p =
 '12'
 ]
 
+const resoruces4p = [
+  'sheep', 'sheep', 'sheep', 'sheep',
+  'wheat', 'wheat', 'wheat', 'wheat',
+  'clay', 'clay',  'clay', 
+  'rock',  'rock', 'rock',
+  'wood', 'wood', 'wood', 'wood']
+
 // The shuffleButton function selects all polygons except the polygon with the class "desert"
-// and randomly swaps their classes.
-// The shuffleButton function selects all polygons except the polygon with the class "desert"
-// and randomly swaps their classes.
+// and randomly swaps their classes according to the value of the hexSlider.
 document.getElementById('shuffleButton').onclick = function() {
   const polygons = document.querySelectorAll('polygon[id^="hex"]');
   const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');
-  const classes = filteredPolygons.map(poly => poly.getAttribute('class'));
-  const shuffledClasses = shuffle(classes);
+  
   const mode = document.getElementById('hexSlider').value;
 
-  filteredPolygons.forEach((polygon) => {
-    polygon.setAttribute('class', "");
-  });
+  filteredPolygons.forEach((polygon) => {polygon.setAttribute('class', "")});
 
   // Assign the shuffled classes to the polygons
-  let unassignedPolygons = [];
-  let shuffledIndex = 0;
-  filteredPolygons.forEach((polygon) => {
+  let successfulShuffle = false;
+  let counter = 0;
+  while (successfulShuffle === false && counter < 20) {
+    let unassignedPolygons = [];
+    let shuffledIndex = 0;
+
+    const classes = [...resoruces4p];
+    let shuffledClasses = shuffle(classes);
     
-    if (mode === '1') {
-      polygon.setAttribute('class', shuffledClasses[shuffledIndex]);
-      shuffledIndex++;
-    } else if (mode === '2') {
-      const adjacentIds = hexAdjecency4p[polygon.id];
-      const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
-      let assignedClass = false;
+    filteredPolygons.forEach((polygon) => {
+      //all random mode
+      if (mode === '1') {
+        polygon.setAttribute('class', shuffledClasses[shuffledIndex]);
+        shuffledIndex++;
+      
+      // resoruces apart mode
+      } else if (mode === '2') {
+        const adjacentIds = hexAdjecency4p[polygon.id];
+        const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
+        let assignedClass = false;
 
-      shuffledClasses.some((shuffledClass) => {
-        if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass)) {
-          polygon.setAttribute('class', shuffledClass);
-          assignedClass = true;
-          shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
-          return true; // Exit the loop once a class is assigned
+        shuffledClasses.some((shuffledClass) => {
+          if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass)) {
+            polygon.setAttribute('class', shuffledClass);
+            assignedClass = true;
+            shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
+            return true; // Exit the loop once a class is assigned
+          }
+        });
+        if (!assignedClass) {
+          unassignedPolygons.push(polygon);
         }
-      });
-      if (!assignedClass) {
-        unassignedPolygons.push(polygon);
-      }
-    } else if (mode === '3') {
-      const adjacentIds = hexAdjecency4p[polygon.id];
-      const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
-      let assignedClass = false;
+      // resoruces and ports apart mode
+      } else if (mode === '3') {
+        const adjacentIds = hexAdjecency4p[polygon.id];
+        const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
+        let assignedClass = false;
 
-      shuffledClasses.some((shuffledClass) => {
-        if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass) &&
-            !(shuffledClass in portAdjecency4p && portAdjecency4p[shuffledClass].includes(polygon.id))) {
-          polygon.setAttribute('class', shuffledClass);
-          assignedClass = true;
-          shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
-          return true; // Exit the loop once a class is assigned
+        shuffledClasses.some((shuffledClass) => {
+          if (!adjacentPolys.some((adjacentPoly) => adjacentPoly.getAttribute('class') === shuffledClass) &&
+              !(shuffledClass in portAdjecency4p && portAdjecency4p[shuffledClass].includes(polygon.id))) {
+            polygon.setAttribute('class', shuffledClass);
+            assignedClass = true;
+            shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
+            return true; // Exit the loop once a class is assigned
+          }
+        });
+        if (!assignedClass) {
+          unassignedPolygons.push(polygon);
         }
-      });
-      if (!assignedClass) {
-        unassignedPolygons.push(polygon);
-      }
-    }
-
-    if (unassignedPolygons.length > 0) {
-      unassignedPolygons.forEach((poly, index) => {
-        poly.setAttribute('class', shuffledClasses[index]);
-      })
-      document.getElementById('msg').textContent = shuffledClasses.length + " resources could not be assigned properly. Try again.";
-    } else {
-      document.getElementById('msg').textContent = "Resources successfully shuffled.";
-    }
-    
-  });
-  
+      }  
+    }); // end filteredPolygons.forEach
+    counter++;
+    if (unassignedPolygons.length === 0) successfulShuffle = true; // Exit the loop once all classes have been assigned
+  } // exit while loop
+document.getElementById('msg').textContent = "Resources successfully shuffled.";
 }
-
 // Shuffle Desert 
 document.getElementById('shuffleDesertButton').onclick = function() {
     const specificIds = ['hex5', 'hex6', 'hex9', 'hex11', 'hex14', 'hex15', 'hex10'];
@@ -257,24 +260,25 @@ document.getElementById('placeDesertCenter').onclick = function() {
 // Shuffle numbers button
 document.getElementById('shuffleNumbers').onclick = function() {
   const textElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent !== 'X');
-  const numbers = [...numbers4p];
   const mode = document.getElementById('numSlider').value
   document.getElementById('msg').textContent = "";
-  shuffle(numbers);
-  console.log(mode);
   textElements.forEach((element) => {element.textContent = "ERROR"});
 
   // Assign the shuffled numbers to the text elements
-
-  textElements.forEach((element) => {
+  let successfulShuffle = false;
+  let counter = 0;
+  while (successfulShuffle === false && counter < 20) {
+    const numbers = [...numbers4p];
+    shuffle(numbers);
+    textElements.forEach((element) => {
     const adjacentIds = numAdjecency4p[element.id];
     const adjacentElements = adjacentIds.map(id => document.getElementById(id));
-    
+      
     if (mode === '1') {
     // all random
         for (let i = 0; i < numbers.length; i++) {
         element.textContent = numbers[i];
-        element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+        element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
         numbers.splice(i, 1);
         break;
         }
@@ -302,7 +306,7 @@ document.getElementById('shuffleNumbers').onclick = function() {
                 }
             }
             element.textContent = numbers[i];
-            element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+            element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
             numbers.splice(i, 1);
             break;
         }
@@ -314,24 +318,18 @@ document.getElementById('shuffleNumbers').onclick = function() {
               !adjElement.textContent.includes('8')) && (numbers[i] !== '8' ||
               !adjElement.textContent.includes('6')))) {
               element.textContent = numbers[i];
-              element.setAttribute('class', numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+              element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
               numbers.splice(i, 1);
               break;
             }
             }   
     }
-    });
+    }); // end element.forEach
+  counter++;
   const errorElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent === 'ERROR');
-  if (errorElements.length > 0) {
-    console.log(numbers)
-    errorElements.forEach((element, index) => {
-        element.textContent = numbers[index];
-        element.setAttribute('class', numbers[index] === '6' || numbers[index] === '8' ? 'redtxt' : 'blacktxt');
-        document.getElementById('msg').textContent = numbers.length + " numbers could not be assigned properly. Try again.";
-    });
-  } else {
-    document.getElementById('msg').textContent = "Numbers successfully shuffled.";
-  }
+  if (errorElements.length === 0) successfulShuffle = true;
+} // end of while loop
+document.getElementById('msg').textContent = "Numbers successfully shuffled.";
 }
 
 
@@ -339,21 +337,20 @@ document.getElementById('shuffleNumbers').onclick = function() {
 const sliders = document.querySelectorAll(".slidecontainer input[type='range']");
 
 sliders.forEach(function(slider) {
-  const value = slider.previousElementSibling;
 
   slider.addEventListener("input", function() {
     if (this.id === 'numSlider' && this.value === '1') {
-      value.textContent = "all random";
+      document.getElementById("numValue").textContent = "all random";
     }  else if (this.id === 'hexSlider' && this.value === '1') {
-        value.textContent = "all random";
+      document.getElementById("hexValue").textContent = "all random";
     } else if (this.id === 'numSlider' && this.value === '2') {
-      value.textContent = "6,8 and 2,12 apart";
+      document.getElementById("numValue").textContent = "6,8 and 2,12 apart";
     }  else if (this.id === 'hexSlider' && this.value === '2') {
-        value.textContent = "resources apart";
+      document.getElementById("hexValue").textContent = "resources apart";
     } else if (this.id === 'numSlider' && this.value === '3') {
-      value.textContent = "all apart";
+      document.getElementById("numValue").textContent = "all apart";
     }  else if (this.id === 'hexSlider' && this.value === '3') {
-        value.textContent = "resources and ports apart"
+      document.getElementById("hexValue").textContent = "resources and ports apart"
   }
 });
 })

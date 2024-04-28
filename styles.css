@@ -4,14 +4,13 @@ body {
     margin: 0; /* Removes default margin */
     height: 100vh; /* Full viewport height */
     background-color: #e2bd7a;
-    font-family: "calibri";
+    font-family: "Geologica", sans-serif;
 }
 
 h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Calibri-Bold, Calibri;
     font-size: medium;
     line-height: 1.2;
     color: #422800;
@@ -19,6 +18,7 @@ h1 {
 
 p {
   font-size: small;
+  font-weight: bold;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -26,8 +26,8 @@ p {
 
 .slidecontainer {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(6, auto);
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(4, auto);
   justify-content: center;
   align-items: center;
   padding-left: 10%;
@@ -35,7 +35,6 @@ p {
 }
 .value {
   text-align: left;
-  font-weight: bold;
   font-size: medium;
   position: relative;
 }
@@ -45,9 +44,8 @@ input[type="range"] {
   -webkit-appearance: none;
   background-color: #422800;
   width: 80%;
-  height: 1%;
+  height: 13%;
   border-radius: 5px;
-  outline: 0;
   position: relative;
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -64,9 +62,9 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Calibri;
-  font-size: 3vw;
+  font-size: medium;
   color: #710000;
+  margin-top: -10%;
 }
 
 .button-container {
@@ -81,11 +79,11 @@ input[type="range"]::-webkit-slider-thumb {
 .svg-container {
     flex: 1;
     width: 100vw;
+    height: 100vw;
     margin-top: -5%; 
     justify-content: center;
     align-items: center;
     position: relative;
-
 }
 
 /* buttons */
@@ -119,9 +117,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 /*ports*/
 .porttxt {
-  font-family: Calibri-Bold, Calibri;
   font-size: 45px;
   text-align: center;
+  text-justify: right;
   font-weight: 700;
 }
 
@@ -136,7 +134,6 @@ input[type="range"]::-webkit-slider-thumb {
   
 }
 .blacktxt {
-  font-family: Calibri-Bold, Calibri;
   font-size: 45px;
   font-weight: 700;
   text-align: center;
@@ -145,12 +142,17 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .redtxt {
-  font-family: Calibri-Bold, Calibri;
   font-size: 45px;
   font-weight: 700;
   fill: #c00;
   text-anchor: middle;
+}
 
+.bluetxt {
+  font-size: 45px;
+  font-weight: 700;
+  fill: #017aa8;
+  text-anchor: middle;
 }
 
 /*desert style*/
