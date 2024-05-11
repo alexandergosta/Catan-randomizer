@@ -1,8 +1,17 @@
-Draw all the circles in illustrator. add X to desert tile.
-Name them with the same numbers as the hexes.
-add as inline HTML.
-get all the text content and shuffle it and rearrange it exept for the one with desert tile which get the X.
-Find out which number that contains desert and apply hide style to that numbercircle.
+Make tick boxes for 1&12 6&8 instead of slider. 
+
+Make slider into all random, all apart or max 2 togehter. 
+
+Name it something else, adjecenty: all, max 2, none. 
+
+Make this for numbers and tiles.
+
+Center desert as a tickbox instead.
+
+Make a new flex box easier to control by making background colors first.
+
+
+
 
 .button-74 {
   background-color: #fbeee0;

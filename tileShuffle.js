@@ -314,9 +314,11 @@ document.getElementById('shuffleNumbers').onclick = function() {
         // all apart
         for (let i = 0; i < numbers.length; i++) {
         
-            if (adjacentElements.every(adjElement => adjElement.textContent !== numbers[i] && (numbers[i] !== '6' || 
-              !adjElement.textContent.includes('8')) && (numbers[i] !== '8' ||
-              !adjElement.textContent.includes('6')))) {
+            if (adjacentElements.every(adjElement => adjElement.textContent !== numbers[i] && 
+              (numbers[i] !== '2' || !adjElement.textContent.includes('12')) &&
+              (numbers[i] !== '12' || !adjElement.textContent.includes('2')) &&
+              (numbers[i] !== '6' || !adjElement.textContent.includes('8')) &&
+              (numbers[i] !== '8' || !adjElement.textContent.includes('6')))) {
               element.textContent = numbers[i];
               element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
               numbers.splice(i, 1);
