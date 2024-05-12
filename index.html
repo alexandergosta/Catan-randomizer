@@ -14,11 +14,30 @@
 </head>
 <body>
     <h1>Catan board scrambler</h1>
+    <div class ="boxes">
+      <label class="checkbox-container">6&8 apart
+        <input type="checkbox" checked id="6-8apart">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="checkbox-container">2&12 apart
+        <input type="checkbox" checked id="2-12apart">
+        <span class="checkmark"></span>
+      </label>
+
+      <label class="checkbox-container">all apart
+        <input type="checkbox" checked id="allApart">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="checkbox-container">center desert
+        <input type="checkbox" checked id="centerDesert">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+
     <div class="slidecontainer">
-      <p></p>
-      <div id = "numValue" class="value">6,8 and 2,12 apart</div>
-      <p>Number mixing</p>
-      <input id="numSlider" type="range" min="1" max="3" step="1" value="2">
       <p></p>
       <div id = "hexValue" class="value">resources apart</div>
       <p>Resource mixing</p>
@@ -29,7 +48,6 @@
         <button id="shuffleButton" class="button-74">Shuffle Polygons</button>
         <button id="shuffleNumbers" class="button-74">Shuffle numbers</button>
         <button id="shuffleDesertButton" class="button-74">Shuffle desert</button>
-        <button id="placeDesertCenter" class="button-74">Center desert</button>
         
     </div>
 

@@ -83,7 +83,8 @@ const resoruces4p = [
   'wheat', 'wheat', 'wheat', 'wheat',
   'clay', 'clay',  'clay', 
   'rock',  'rock', 'rock',
-  'wood', 'wood', 'wood', 'wood']
+  'wood', 'wood', 'wood', 'wood'
+]
 
 // The shuffleButton function selects all polygons except the polygon with the class "desert"
 // and randomly swaps their classes according to the value of the hexSlider.
@@ -153,6 +154,7 @@ document.getElementById('shuffleButton').onclick = function() {
   } // exit while loop
 document.getElementById('msg').textContent = "Resources successfully shuffled.";
 }
+
 // Shuffle Desert 
 document.getElementById('shuffleDesertButton').onclick = function() {
     const specificIds = ['hex5', 'hex6', 'hex9', 'hex11', 'hex14', 'hex15', 'hex10'];
@@ -162,9 +164,14 @@ document.getElementById('shuffleDesertButton').onclick = function() {
         console.error('No polygons found with the specified IDs.');
         return;
     }
+    let randomPolygon = null;
 
     // Randomly select one polygon from the filtered list
-    const randomPolygon = specificPolygons[Math.floor(Math.random() * specificPolygons.length)];
+    if (document.getElementById('centerDesert').checked) {
+      randomPolygon = specificPolygons.find(polygon => polygon.id === "hex10");
+    } else {
+      randomPolygon = specificPolygons[Math.floor(Math.random() * specificPolygons.length)];
+    }
     
     // Find the polygon with class 'desert'
     const desertPolygon = document.querySelector('polygon.desert');
@@ -210,53 +217,6 @@ document.getElementById('shuffleDesertButton').onclick = function() {
 
 };
 
-//Center desert
-document.getElementById('placeDesertCenter').onclick = function() {
-    const centerHex = document.getElementById('hex10');
-    const currentDesert = document.querySelector('polygon.desert');
-    // Extract the numeric part from the polygon IDs using regex
-    const desertNumber = currentDesert.id.match(/\d+/)[0];
-    const centerNumber = centerHex.id.match(/\d+/)[0];
-
-    if (currentDesert && centerHex) {
-        // Swap classes
-        const tempClass = centerHex.getAttribute('class');
-            // Swap number
-
-    // Fetch the corresponding text elements
-    const desertText = document.getElementById(`numtile${desertNumber}`);
-    const centerText = document.getElementById(`numtile${centerNumber}`);
-    const desertGroup = document.getElementById(`numgroup${desertNumber}`);
-    const centerGroup = document.getElementById(`numgroup${centerNumber}`);
-
-    if (desertText && centerText) {
-        const tempText = desertText.textContent;
-        const tempClassText = desertText.getAttribute('class');
-        const tempStyle = desertGroup.getAttribute('class');
-
-        desertText.textContent = centerText.textContent;
-        centerText.textContent = tempText;
-
-        desertText.setAttribute('class', centerText.getAttribute('class'));
-        desertGroup.setAttribute('class', centerGroup.getAttribute('class'));
-        centerText.setAttribute('class', tempClassText);
-        centerGroup.setAttribute('class', tempStyle);
-
-    } else {
-        console.error('Text elements corresponding to the polygons could not be found.');
-    }
-        centerHex.setAttribute('class', currentDesert.getAttribute('class'));
-        currentDesert.setAttribute('class', tempClass);
-    } else {
-        if (!centerHex) {
-            console.error('No polygon found with the ID "hex10".');
-        }
-        if (!currentDesert) {
-            console.error('No polygon with class "desert" found.');
-        }
-    }
-};
-
 // Shuffle numbers button
 document.getElementById('shuffleNumbers').onclick = function() {
   const textElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent !== 'X');
@@ -274,15 +234,56 @@ document.getElementById('shuffleNumbers').onclick = function() {
     const adjacentIds = numAdjecency4p[element.id];
     const adjacentElements = adjacentIds.map(id => document.getElementById(id));
       
-    if (mode === '1') {
-    // all random
-        for (let i = 0; i < numbers.length; i++) {
-        element.textContent = numbers[i];
-        element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
-        numbers.splice(i, 1);
-        break;
+    for (let i = 0; i < numbers.length; i++) {
+      //6 & 8 apart
+      if (document.getElementById('6-8apart').checked){
+        let assignedtoAdj = false;
+        if (numbers[i] === '6') {
+          if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
+            adjElement.textContent.includes('8'))) {
+              assignedtoAdj = true;
+          }
+        } else if (numbers[i] === '8') {
+          if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
+            adjElement.textContent.includes('8'))) {
+              assignedtoAdj = true;
+          }
         }
-    } else if (mode === '2') {
+        if (assignedtoAdj) {
+          continue;
+        }
+      }
+      //2 & 12 apart
+      if (document.getElementById('2-12apart').checked){
+        let assignedtoAdj = false;
+        if (numbers[i] === '2') {
+          if (adjacentElements.some(adjElement => adjElement.textContent.includes('2') ||
+            adjElement.textContent.includes('12'))) {
+              assignedtoAdj = true;
+          }
+        } else if (numbers[i] === '12') {
+          if (adjacentElements.some(adjElement => adjElement.textContent.includes('12') ||
+            adjElement.textContent.includes('2'))) {
+              assignedtoAdj = true;
+          }
+        }
+        if (assignedtoAdj) {
+          continue;
+        }
+      }
+
+      if (document.getElementById('allApart').checked && 
+      adjacentElements.some(adjElement => adjElement.textContent === numbers[i])) {
+        continue; // Skip this number if it already exists in adjacentElements
+      }
+      element.textContent = numbers[i];
+      element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
+      numbers.splice(i, 1);
+      break; // Exit the loop after one number is assigned
+    }
+    
+    /* 
+    else if (mode === '2') {
         // 6,8 and 2,12 apart
         for (let i = 0; i < numbers.length; i++) {
         
@@ -326,6 +327,7 @@ document.getElementById('shuffleNumbers').onclick = function() {
             }
             }   
     }
+    */
     }); // end element.forEach
   counter++;
   const errorElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent === 'ERROR');
