@@ -91,8 +91,6 @@ const resoruces4p = [
 document.getElementById('shuffleButton').onclick = function() {
   const polygons = document.querySelectorAll('polygon[id^="hex"]');
   const filteredPolygons = Array.from(polygons).filter(poly => poly.getAttribute('class') !== 'desert');
-  
-  const mode = document.getElementById('hexSlider').value;
 
   filteredPolygons.forEach((polygon) => {polygon.setAttribute('class', "")});
 
@@ -108,12 +106,13 @@ document.getElementById('shuffleButton').onclick = function() {
     
     filteredPolygons.forEach((polygon) => {
       //all random mode
-      if (mode === '1') {
+      
+      if (!document.getElementById('allResorucesApart').checked && !document.getElementById('allPortsApart').checked) {
         polygon.setAttribute('class', shuffledClasses[shuffledIndex]);
         shuffledIndex++;
       
       // resoruces apart mode
-      } else if (mode === '2') {
+      } else if (document.getElementById('allResorucesApart').checked && !document.getElementById('allPortsApart').checked) {
         const adjacentIds = hexAdjecency4p[polygon.id];
         const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
         let assignedClass = false;
@@ -129,8 +128,27 @@ document.getElementById('shuffleButton').onclick = function() {
         if (!assignedClass) {
           unassignedPolygons.push(polygon);
         }
+
+      // ports apart mode
+      } else if (document.getElementById('allPortsApart').checked && !document.getElementById('allResorucesApart').checked) {
+        const adjacentIds = hexAdjecency4p[polygon.id];
+        const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
+        let assignedClass = false;
+
+        shuffledClasses.some((shuffledClass) => {
+          if (!(shuffledClass in portAdjecency4p && portAdjecency4p[shuffledClass].includes(polygon.id))) {
+            polygon.setAttribute('class', shuffledClass);
+            assignedClass = true;
+            shuffledClasses.splice(shuffledClasses.indexOf(shuffledClass),1);
+            return true; // Exit the loop once a class is assigned
+          } 
+        });
+        if (!assignedClass) {
+          unassignedPolygons.push(polygon);
+        }
+
       // resoruces and ports apart mode
-      } else if (mode === '3') {
+      } else if (document.getElementById('allPortsApart').checked && document.getElementById('allResorucesApart').checked) {
         const adjacentIds = hexAdjecency4p[polygon.id];
         const adjacentPolys = adjacentIds.map(id => document.getElementById(id));
         let assignedClass = false;
@@ -287,26 +305,3 @@ document.getElementById('shuffleNumbers').onclick = function() {
 } // end of while loop
 document.getElementById('msg').textContent = "Numbers successfully shuffled.";
 }
-
-
-//Sliders
-const sliders = document.querySelectorAll(".slidecontainer input[type='range']");
-
-sliders.forEach(function(slider) {
-
-  slider.addEventListener("input", function() {
-    if (this.id === 'numSlider' && this.value === '1') {
-      document.getElementById("numValue").textContent = "all random";
-    }  else if (this.id === 'hexSlider' && this.value === '1') {
-      document.getElementById("hexValue").textContent = "all random";
-    } else if (this.id === 'numSlider' && this.value === '2') {
-      document.getElementById("numValue").textContent = "6,8 and 2,12 apart";
-    }  else if (this.id === 'hexSlider' && this.value === '2') {
-      document.getElementById("hexValue").textContent = "resources apart";
-    } else if (this.id === 'numSlider' && this.value === '3') {
-      document.getElementById("numValue").textContent = "all apart";
-    }  else if (this.id === 'hexSlider' && this.value === '3') {
-      document.getElementById("hexValue").textContent = "resources and ports apart"
-  }
-});
-})
