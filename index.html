@@ -14,12 +14,17 @@
 </head>
 <body>
     <h1>Catan board scrambler</h1>
-    <div class ="boxes">
+
+    
+    <div class ="shuffle-group">
+
+      <button id="shuffleNumbers" class="button-74">Shuffle numbers</button>
+
       <label class="checkbox-container">6&8 apart
         <input type="checkbox" checked id="6-8apart">
         <span class="checkmark"></span>
       </label>
-      
+
       <label class="checkbox-container">2&12 apart
         <input type="checkbox" checked id="2-12apart">
         <span class="checkmark"></span>
@@ -29,12 +34,23 @@
         <input type="checkbox" checked id="allApart">
         <span class="checkmark"></span>
       </label>
-      
+    </div>
+
+    <!--  
+    <div class ="boxes">
+
       <label class="checkbox-container">center desert
         <input type="checkbox" checked id="centerDesert">
         <span class="checkmark"></span>
       </label>
     </div>
+
+    <label class="checkbox-container">no resource next to port
+      <input type="checkbox" checked id="port">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+  -->
 
 
     <div class="slidecontainer">
@@ -46,7 +62,7 @@
 
     <div class="button-container">
         <button id="shuffleButton" class="button-74">Shuffle Polygons</button>
-        <button id="shuffleNumbers" class="button-74">Shuffle numbers</button>
+        
         <button id="shuffleDesertButton" class="button-74">Shuffle desert</button>
         
     </div>

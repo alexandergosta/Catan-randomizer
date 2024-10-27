@@ -220,7 +220,6 @@ document.getElementById('shuffleDesertButton').onclick = function() {
 // Shuffle numbers button
 document.getElementById('shuffleNumbers').onclick = function() {
   const textElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent !== 'X');
-  const mode = document.getElementById('numSlider').value
   document.getElementById('msg').textContent = "";
   textElements.forEach((element) => {element.textContent = "ERROR"});
 
@@ -281,53 +280,6 @@ document.getElementById('shuffleNumbers').onclick = function() {
       numbers.splice(i, 1);
       break; // Exit the loop after one number is assigned
     }
-    
-    /* 
-    else if (mode === '2') {
-        // 6,8 and 2,12 apart
-        for (let i = 0; i < numbers.length; i++) {
-        
-            if (numbers[i] === '6') {
-              if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
-                adjElement.textContent.includes('8'))) {
-                continue;
-              }
-            } else if (numbers[i] === '8') {
-              if (adjacentElements.some(adjElement => adjElement.textContent.includes('6') ||
-                adjElement.textContent.includes('8'))) {
-                continue;
-              }
-            } else if (numbers[i] === '2') {
-                if (adjacentElements.some(adjElement => adjElement.textContent.includes('12'))) {
-                  continue;
-                }
-            } else if (numbers[i] === '12') {
-                if (adjacentElements.some(adjElement => adjElement.textContent.includes('2'))) {
-                  continue;
-                }
-            }
-            element.textContent = numbers[i];
-            element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
-            numbers.splice(i, 1);
-            break;
-        }
-    } else if (mode === '3') {
-        // all apart
-        for (let i = 0; i < numbers.length; i++) {
-        
-            if (adjacentElements.every(adjElement => adjElement.textContent !== numbers[i] && 
-              (numbers[i] !== '2' || !adjElement.textContent.includes('12')) &&
-              (numbers[i] !== '12' || !adjElement.textContent.includes('2')) &&
-              (numbers[i] !== '6' || !adjElement.textContent.includes('8')) &&
-              (numbers[i] !== '8' || !adjElement.textContent.includes('6')))) {
-              element.textContent = numbers[i];
-              element.setAttribute('class', numbers[i] === '2' || numbers[i] === '12' ? 'bluetxt' : numbers[i] === '6' || numbers[i] === '8' ? 'redtxt' : 'blacktxt');
-              numbers.splice(i, 1);
-              break;
-            }
-            }   
-    }
-    */
     }); // end element.forEach
   counter++;
   const errorElements = Array.from(document.querySelectorAll('text[id^="numtile"]')).filter(element => element.textContent === 'ERROR');
