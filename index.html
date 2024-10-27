@@ -13,169 +13,172 @@
 
 </head>
 <body>
-    <h1>Catan board scrambler</h1>
-    <div class="slidecontainer">
-      <p></p>
-      <div id = "numValue" class="value">6,8 and 2,12 apart</div>
-      <p>Number mixing</p>
-      <input id="numSlider" type="range" min="1" max="3" step="1" value="2">
-      <p></p>
-      <div id = "hexValue" class="value">resources apart</div>
-      <p>Resource mixing</p>
-      <input id="hexSlider" type="range" min="1" max="3" step="1" value="2">
-    </div>
+  <h1>Catan board scrambler</h1>
 
-    <div class="button-container">
-        <button id="shuffleButton" class="button-74">Shuffle Polygons</button>
-        <button id="shuffleNumbers" class="button-74">Shuffle numbers</button>
-        <button id="shuffleDesertButton" class="button-74">Shuffle desert</button>
-        <button id="placeDesertCenter" class="button-74">Center desert</button>
-        
-    </div>
+  <div class="button_container">
+      
+    <button id="shuffleNumbers" class="button-3" role="button">Suffle numbers</button>
+    <label class="switch"><input id="6-8apart" type="checkbox" id="6-8"><span class="slider round"></span></label>
+    <p class="table">6 & 8</p>
+    <label class="switch"><input id="2-12apart" type="checkbox" id="2-12"><span class="slider round"></span></label>
+    <p class="table">2 & 12</p>
+    <label class="switch"><input type="checkbox" id="allApart"><span class="slider round"></span></label>
+    <p class="table">all numbers</p>
 
-    <div class="svg-container">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1087 1087">
+    <button id="shuffleButton" class="button-3" role="button">Shuffle resources</button>
+    <label class="switch"><input id="allResorucesApart" type="checkbox"><span class="slider round"></span></label>
+    <p class="table">all resoruces</p>
+    <label class="switch"><input id="allPortsApart" type="checkbox"><span class="slider round"></span></label>
+    <p class="table">ports & resoruces</p>
+    <label class="switch"><input id="centerDesert" type="checkbox"><span class="slider round"></span></label>
+    <p class="table">Center desert</p>
+    <button id="shuffleDesertButton" class="button-3" role="button">Shuffle desert</button>
+  </div>
 
-        <g id="Water">
-          <polygon id="water6" class="water" points="315 240.5 231.042 192.364 28.313 543.5 80.958 634.684 165 586.5 165 500.199 240 456.801 240 370.199 315 326.801 315 240.5"/>
-          <polygon id="water5" class="water" points="284.656 987.5 80.958 634.684 165 586.5 238.956 629.5 240 716.801 315 760.199 315 846.801 390 890.103 390 987.5 284.656 987.5"/>
-          <polygon id="water4" class="water" points="540 890.102 465 846.801 390 890.103 390 987.5 797.344 987.5 850.461 895.498 765 846.5 690 890.103 615 846.801 540 890.102"/>
-          <polygon id="water3" class="water" points="840 716.801 765 760.199 765 846.5 850.461 895.498 1053.687 543.5 1000.296 451.024 915 500.5 915 586.801 840 630.103 840 716.801"/>
-          <polygon id="water2" class="water" points="1000.296 451.024 797.344 99.5 690 99.5 690 196.5 765 240.199 765 326.801 840 370.199 840 456.801 915 500.5 1000.296 451.024"/>
-          <polygon id="water1" class="water" points="690 99.5 284.656 99.5 231.042 192.364 315 240.5 390 196.897 465 240.199 540 196.897 615 240.199 690 196.5 690 99.5"/>
-        </g>
+  <div class="board_container">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1087 1087">
 
-        <g id="Board">
-          <polygon id="hex19" class="sheep" points="615 760.199 615 846.801 690 890.103 765 846.801 765 760.199 690 716.898 615 760.199"/>
-          <polygon id="hex18" class="wheat" points="465 760.199 465 846.801 540 890.102 615 846.801 615 760.199 540 716.897 465 760.199"/>
-          <polygon id="hex17" class="clay" points="315 760.199 315 846.801 390 890.103 465 846.801 465 760.199 390 716.897 315 760.199"/>
-          <polygon id="hex16" class="sheep" points="690 630.199 690 716.801 765 760.103 840 716.801 840 630.199 765 586.898 690 630.199"/>
-          <polygon id="hex15" class="wheat" points="540 630.199 540 716.801 615 760.103 690 716.801 690 630.199 615 586.898 540 630.199"/>
-          <polygon id="hex14" class="rock" points="390 630.199 390 716.801 465 760.103 540 716.801 540 630.199 465 586.897 390 630.199"/>
-          <polygon id="hex13" class="wood" points="240 630.199 240 716.801 315 760.102 390 716.801 390 630.199 315 586.897 240 630.199"/>
-          <polygon id="hex12" class="rock" points="915 586.801 915 500.199 840 456.897 765 500.199 765 586.801 840 630.103 915 586.801"/>
-          <polygon id="hex11" class="wood" points="765 586.801 765 500.199 690 456.897 615 500.199 615 586.801 690 630.103 765 586.801"/>
-          <polygon id="hex10" class="desert" points="615 586.801 615 500.199 540 456.897 465 500.199 465 586.801 540 630.103 615 586.801"/>
-          <polygon id="hex9" class="wood" points="465 586.801 465 500.199 390 456.897 315 500.199 315 586.801 390 630.103 465 586.801"/>
-          <polygon id="hex8" class="wheat" points="315 586.801 315 500.199 240 456.897 165 500.199 165 586.801 240 630.103 315 586.801"/>
-          <polygon id="hex7" class="clay" points="840 456.801 840 370.199 765 326.897 690 370.199 690 456.801 765 500.103 840 456.801"/>
-          <polygon id="hex6" class="sheep" points="690 456.801 690 370.199 615 326.897 540 370.199 540 456.801 615 500.103 690 456.801"/>
-          <polygon id="hex5" class="clay" points="540 456.801 540 370.199 465 326.897 390 370.199 390 456.801 465 500.103 540 456.801"/>
-          <polygon id="hex4" class="wheat" points="390 456.801 390 370.199 315 326.897 240 370.199 240 456.801 315 500.103 390 456.801"/>
-          <polygon id="hex3" class="wood" points="765 326.801 765 240.199 690 196.897 615 240.199 615 326.801 690 370.103 765 326.801"/>
-          <polygon id="hex2" class="sheep" points="615 326.801 615 240.199 540 196.897 465 240.199 465 326.801 540 370.103 615 326.801"/>
-          <polygon id="hex1" class="rock" points="465 326.801 465 240.199 390 196.897 315 240.199 315 326.801 390 370.103 465 326.801"/>
-        </g>
-
-        <g id="numbers">
-          <g id="numgroup1">
-            <g id="num1">
-              <circle class="numcircle" cx="390" cy="283.5" r="40"/>
-            </g>
-            <text id="numtile1" class="blacktxt" transform="translate(390 290.514)"><tspan x="0" y="0">10</tspan></text>
-          </g>
-          <g id="numgroup2">
-            <circle class="numcircle" cx="540.25" cy="283.75" r="40"/>
-            <text id="numtile2" class="bluetxt" transform="translate(540.25 290.514)"><tspan x="0" y="0">2</tspan></text>
-          </g>
-          <g id="numgroup3">
-            <circle class="numcircle" cx="689.75" cy="283.75" r="40"/>
-            <text id="numtile3" class="blacktxt" transform="translate(689.75 290.514)"><tspan x="0" y="0">9</tspan></text>
-          </g>
-          <g id="numgroup4">
-            <circle class="numcircle" cx="315.25" cy="413.25" r="40"/>
-            <text id="numtile4" class="bluetxt" transform="translate(315.25 420.514)"><tspan x="0" y="0">12</tspan></text>
-          </g>
-          <g id="numgroup5">
-            <circle class="numcircle" cx="465.25" cy="413.25" r="40"/>
-            <text id="numtile5" class="redtxt" transform="translate(465.25 420.514)"><tspan x="0" y="0">6</tspan></text>
-          </g>
-          <g id="numgroup6">
-            <circle class="numcircle" cx="615.25" cy="413.25" r="40"/>
-            <text id="numtile6" class="blacktxt" transform="translate(615.25 420.514)"><tspan x="0" y="0">4</tspan></text>
-          </g>
-          <g id="numgroup7">
-            <circle class="numcircle" cx="765.25" cy="413.5" r="40"/>
-            <text id="numtile7" class="blacktxt" transform="translate(765.25 420.514)"><tspan x="0" y="0">10</tspan></text>
-          </g>
-          <g id="numgroup8">
-            <circle class="numcircle" cx="239.75" cy="543.75" r="40"/>
-            <text id="numtile8" class="blacktxt" transform="translate(239.75 550.514)"><tspan x="0" y="0">9</tspan></text>
-          </g>
-          <g id="numgroup9">
-            <g id="num9">
-              <circle class="numcircle" cx="390.25" cy="543.75" r="40"/>
-            </g>
-            <text id="numtile9" class="blacktxt" transform="translate(390.25 550.514)"><tspan x="0" y="0">11</tspan></text>
-          </g>
-          <g id="numgroup10" class="desertNumber">
-            <circle class="numcircle" cx="539.75" cy="543.75" r="40"/>
-            <text id="numtile10" class="blacktxt" transform="translate(539.75 550.514)"><tspan x="0" y="0">X</tspan></text>
-          </g>
-          <g id="numgroup11">
-            <circle class="numcircle" cx="689.75" cy="543.75" r="40"/>
-            <text id="numtile11" class="blacktxt" transform="translate(689.75 550.514)"><tspan x="0" y="0">3</tspan></text>
-          </g>
-          <g id="numgroup12">
-            <circle class="numcircle" cx="840.25" cy="543.75" r="40"/>
-            <text id="numtile12" class="redtxt" transform="translate(840.25 550.514)"><tspan x="0" y="0">8</tspan></text>
-          </g>
-          <g id="numgroup13">
-            <circle class="numcircle" cx="314.853" cy="673.658" r="40"/>
-            <text id="numtile13" class="redtxt" transform="translate(314.853 680.514)"><tspan x="0" y="0">8</tspan></text>
-          </g>
-          <g id="numgroup14">
-            <circle class="numcircle" cx="464.853" cy="673.658" r="40"/>
-            <text id="numtile14" class="blacktxt" transform="translate(464.853 680.514)"><tspan x="0" y="0">3</tspan></text>
-          </g>
-          <g id="numgroup15">
-            <circle class="numcircle" cx="615.353" cy="673.658" r="40"/>
-            <text id="numtile15" class="blacktxt" transform="translate(615.353 680.514)"><tspan x="0" y="0">4</tspan></text>
-          </g>
-          <g id="numgroup16">
-            <circle class="numcircle" cx="765.353" cy="673.658" r="40"/>
-            <text id="numtile16" class="blacktxt" transform="translate(765.353 680.514)"><tspan x="0" y="0">5</tspan></text>
-          </g>
-          <g id="numgroup17">
-            <circle class="numcircle" cx="389.75" cy="803.75" r="40"/>
-            <text id="numtile17" class="blacktxt" transform="translate(389.75 810.514)"><tspan x="0" y="0">5</tspan></text>
-          </g>
-          <g id="numgroup18">
-            <circle class="numcircle" cx="539.75" cy="803.75" r="40"/>
-            <text id="numtile18" class="redtxt" transform="translate(539.75 810.514)"><tspan x="0" y="0">6</tspan></text>
-          </g>
-          <g id="numgroup19">
-            <circle class="numcircle" cx="689.75" cy="803.75" r="40"/>
-            <text id="numtile19" class="blacktxt" transform="translate(689.75 810.514)"><tspan x="0" y="0">11</tspan></text>
-          </g>
-        </g>
-
-        <g id="Ports">
-          <polygon class="wheat" points="546.649 193.375 611.77 155.778 611.77 230.972 546.649 193.375"/>
-          <polygon class="rock" points="774.649 325.375 839.77 287.778 839.77 362.972 774.649 325.375"/>
-          <polygon class="neutral" points="315.196 154.519 382.828 193.566 315.196 232.613 315.196 154.519"/>
-          <polygon class="neutral" points="921.195 503.519 988.828 542.566 921.195 581.613 921.195 503.519"/>
-          <polygon class="neutral" points="314.834 853.412 383.744 893.197 314.834 932.982 314.834 853.412"/>
-          <polygon class="neutral" points="545.651 893.566 613.284 854.519 613.284 932.613 545.651 893.566"/>
-          <polygon class="sheep" points="772.651 762.566 840.284 723.519 840.284 801.613 772.651 762.566"/>
-          <polygon class="wood" points="166.651 412.566 234.284 373.519 234.284 451.613 166.651 412.566"/>
-          <polygon class="clay" points="166.651 675.566 234.284 636.519 234.284 714.613 166.651 675.566"/>
-          <text class="porttxt" transform="translate(315 199.404)"><tspan x="0" y="0">3:1</tspan></text>
-          <text class="porttxt" transform="translate(920 549.404)"><tspan x="0" y="0">3:1</tspan></text>
-          <text class="porttxt" transform="translate(565 899.404)"><tspan x="0" y="0">3:1</tspan></text>
-          <text class="porttxt" transform="translate(315 899.404)"><tspan x="0" y="0">3:1</tspan></text>
-          <text class="porttxt" transform="translate(565 199.404)"><tspan x="0" y="0">1:2</tspan></text>
-          <text class="porttxt" transform="translate(790 331.404)"><tspan x="0" y="0">1:2</tspan></text>
-          <text class="porttxt" transform="translate(790 769.404)"><tspan x="0" y="0">2:1</tspan></text>
-          <text class="porttxt" transform="translate(180 682.404)"><tspan x="0" y="0">2:1</tspan></text>
-          <text class="porttxt" transform="translate(180 419.404)"><tspan x="0" y="0">2:1</tspan></text>
+      <g id="Water">
+        <polygon id="water6" class="water" points="315 240.5 231.042 192.364 28.313 543.5 80.958 634.684 165 586.5 165 500.199 240 456.801 240 370.199 315 326.801 315 240.5"/>
+        <polygon id="water5" class="water" points="284.656 987.5 80.958 634.684 165 586.5 238.956 629.5 240 716.801 315 760.199 315 846.801 390 890.103 390 987.5 284.656 987.5"/>
+        <polygon id="water4" class="water" points="540 890.102 465 846.801 390 890.103 390 987.5 797.344 987.5 850.461 895.498 765 846.5 690 890.103 615 846.801 540 890.102"/>
+        <polygon id="water3" class="water" points="840 716.801 765 760.199 765 846.5 850.461 895.498 1053.687 543.5 1000.296 451.024 915 500.5 915 586.801 840 630.103 840 716.801"/>
+        <polygon id="water2" class="water" points="1000.296 451.024 797.344 99.5 690 99.5 690 196.5 765 240.199 765 326.801 840 370.199 840 456.801 915 500.5 1000.296 451.024"/>
+        <polygon id="water1" class="water" points="690 99.5 284.656 99.5 231.042 192.364 315 240.5 390 196.897 465 240.199 540 196.897 615 240.199 690 196.5 690 99.5"/>
       </g>
-      </svg>
 
-      <div class = "msg-container">
-        <p id="msg"></p>
-    </div>
-    </div>
-    <script src= tileShuffle.js> </script> 
+      <g id="Board">
+        <polygon id="hex19" class="sheep" points="615 760.199 615 846.801 690 890.103 765 846.801 765 760.199 690 716.898 615 760.199"/>
+        <polygon id="hex18" class="wheat" points="465 760.199 465 846.801 540 890.102 615 846.801 615 760.199 540 716.897 465 760.199"/>
+        <polygon id="hex17" class="clay" points="315 760.199 315 846.801 390 890.103 465 846.801 465 760.199 390 716.897 315 760.199"/>
+        <polygon id="hex16" class="sheep" points="690 630.199 690 716.801 765 760.103 840 716.801 840 630.199 765 586.898 690 630.199"/>
+        <polygon id="hex15" class="wheat" points="540 630.199 540 716.801 615 760.103 690 716.801 690 630.199 615 586.898 540 630.199"/>
+        <polygon id="hex14" class="rock" points="390 630.199 390 716.801 465 760.103 540 716.801 540 630.199 465 586.897 390 630.199"/>
+        <polygon id="hex13" class="wood" points="240 630.199 240 716.801 315 760.102 390 716.801 390 630.199 315 586.897 240 630.199"/>
+        <polygon id="hex12" class="rock" points="915 586.801 915 500.199 840 456.897 765 500.199 765 586.801 840 630.103 915 586.801"/>
+        <polygon id="hex11" class="wood" points="765 586.801 765 500.199 690 456.897 615 500.199 615 586.801 690 630.103 765 586.801"/>
+        <polygon id="hex10" class="desert" points="615 586.801 615 500.199 540 456.897 465 500.199 465 586.801 540 630.103 615 586.801"/>
+        <polygon id="hex9" class="wood" points="465 586.801 465 500.199 390 456.897 315 500.199 315 586.801 390 630.103 465 586.801"/>
+        <polygon id="hex8" class="wheat" points="315 586.801 315 500.199 240 456.897 165 500.199 165 586.801 240 630.103 315 586.801"/>
+        <polygon id="hex7" class="clay" points="840 456.801 840 370.199 765 326.897 690 370.199 690 456.801 765 500.103 840 456.801"/>
+        <polygon id="hex6" class="sheep" points="690 456.801 690 370.199 615 326.897 540 370.199 540 456.801 615 500.103 690 456.801"/>
+        <polygon id="hex5" class="clay" points="540 456.801 540 370.199 465 326.897 390 370.199 390 456.801 465 500.103 540 456.801"/>
+        <polygon id="hex4" class="wheat" points="390 456.801 390 370.199 315 326.897 240 370.199 240 456.801 315 500.103 390 456.801"/>
+        <polygon id="hex3" class="wood" points="765 326.801 765 240.199 690 196.897 615 240.199 615 326.801 690 370.103 765 326.801"/>
+        <polygon id="hex2" class="sheep" points="615 326.801 615 240.199 540 196.897 465 240.199 465 326.801 540 370.103 615 326.801"/>
+        <polygon id="hex1" class="rock" points="465 326.801 465 240.199 390 196.897 315 240.199 315 326.801 390 370.103 465 326.801"/>
+      </g>
+
+      <g id="numbers">
+        <g id="numgroup1">
+          <g id="num1">
+            <circle class="numcircle" cx="390" cy="283.5" r="40"/>
+          </g>
+          <text id="numtile1" class="blacktxt" transform="translate(390 290.514)"><tspan x="0" y="0">10</tspan></text>
+        </g>
+        <g id="numgroup2">
+          <circle class="numcircle" cx="540.25" cy="283.75" r="40"/>
+          <text id="numtile2" class="bluetxt" transform="translate(540.25 290.514)"><tspan x="0" y="0">2</tspan></text>
+        </g>
+        <g id="numgroup3">
+          <circle class="numcircle" cx="689.75" cy="283.75" r="40"/>
+          <text id="numtile3" class="blacktxt" transform="translate(689.75 290.514)"><tspan x="0" y="0">9</tspan></text>
+        </g>
+        <g id="numgroup4">
+          <circle class="numcircle" cx="315.25" cy="413.25" r="40"/>
+          <text id="numtile4" class="bluetxt" transform="translate(315.25 420.514)"><tspan x="0" y="0">12</tspan></text>
+        </g>
+        <g id="numgroup5">
+          <circle class="numcircle" cx="465.25" cy="413.25" r="40"/>
+          <text id="numtile5" class="redtxt" transform="translate(465.25 420.514)"><tspan x="0" y="0">6</tspan></text>
+        </g>
+        <g id="numgroup6">
+          <circle class="numcircle" cx="615.25" cy="413.25" r="40"/>
+          <text id="numtile6" class="blacktxt" transform="translate(615.25 420.514)"><tspan x="0" y="0">4</tspan></text>
+        </g>
+        <g id="numgroup7">
+          <circle class="numcircle" cx="765.25" cy="413.5" r="40"/>
+          <text id="numtile7" class="blacktxt" transform="translate(765.25 420.514)"><tspan x="0" y="0">10</tspan></text>
+        </g>
+        <g id="numgroup8">
+          <circle class="numcircle" cx="239.75" cy="543.75" r="40"/>
+          <text id="numtile8" class="blacktxt" transform="translate(239.75 550.514)"><tspan x="0" y="0">9</tspan></text>
+        </g>
+        <g id="numgroup9">
+          <g id="num9">
+            <circle class="numcircle" cx="390.25" cy="543.75" r="40"/>
+          </g>
+          <text id="numtile9" class="blacktxt" transform="translate(390.25 550.514)"><tspan x="0" y="0">11</tspan></text>
+        </g>
+        <g id="numgroup10" class="desertNumber">
+          <circle class="numcircle" cx="539.75" cy="543.75" r="40"/>
+          <text id="numtile10" class="blacktxt" transform="translate(539.75 550.514)"><tspan x="0" y="0">X</tspan></text>
+        </g>
+        <g id="numgroup11">
+          <circle class="numcircle" cx="689.75" cy="543.75" r="40"/>
+          <text id="numtile11" class="blacktxt" transform="translate(689.75 550.514)"><tspan x="0" y="0">3</tspan></text>
+        </g>
+        <g id="numgroup12">
+          <circle class="numcircle" cx="840.25" cy="543.75" r="40"/>
+          <text id="numtile12" class="redtxt" transform="translate(840.25 550.514)"><tspan x="0" y="0">8</tspan></text>
+        </g>
+        <g id="numgroup13">
+          <circle class="numcircle" cx="314.853" cy="673.658" r="40"/>
+          <text id="numtile13" class="redtxt" transform="translate(314.853 680.514)"><tspan x="0" y="0">8</tspan></text>
+        </g>
+        <g id="numgroup14">
+          <circle class="numcircle" cx="464.853" cy="673.658" r="40"/>
+          <text id="numtile14" class="blacktxt" transform="translate(464.853 680.514)"><tspan x="0" y="0">3</tspan></text>
+        </g>
+        <g id="numgroup15">
+          <circle class="numcircle" cx="615.353" cy="673.658" r="40"/>
+          <text id="numtile15" class="blacktxt" transform="translate(615.353 680.514)"><tspan x="0" y="0">4</tspan></text>
+        </g>
+        <g id="numgroup16">
+          <circle class="numcircle" cx="765.353" cy="673.658" r="40"/>
+          <text id="numtile16" class="blacktxt" transform="translate(765.353 680.514)"><tspan x="0" y="0">5</tspan></text>
+        </g>
+        <g id="numgroup17">
+          <circle class="numcircle" cx="389.75" cy="803.75" r="40"/>
+          <text id="numtile17" class="blacktxt" transform="translate(389.75 810.514)"><tspan x="0" y="0">5</tspan></text>
+        </g>
+        <g id="numgroup18">
+          <circle class="numcircle" cx="539.75" cy="803.75" r="40"/>
+          <text id="numtile18" class="redtxt" transform="translate(539.75 810.514)"><tspan x="0" y="0">6</tspan></text>
+        </g>
+        <g id="numgroup19">
+          <circle class="numcircle" cx="689.75" cy="803.75" r="40"/>
+          <text id="numtile19" class="blacktxt" transform="translate(689.75 810.514)"><tspan x="0" y="0">11</tspan></text>
+        </g>
+      </g>
+
+      <g id="Ports">
+        <polygon class="wheat" points="546.649 193.375 611.77 155.778 611.77 230.972 546.649 193.375"/>
+        <polygon class="rock" points="774.649 325.375 839.77 287.778 839.77 362.972 774.649 325.375"/>
+        <polygon class="neutral" points="315.196 154.519 382.828 193.566 315.196 232.613 315.196 154.519"/>
+        <polygon class="neutral" points="921.195 503.519 988.828 542.566 921.195 581.613 921.195 503.519"/>
+        <polygon class="neutral" points="314.834 853.412 383.744 893.197 314.834 932.982 314.834 853.412"/>
+        <polygon class="neutral" points="545.651 893.566 613.284 854.519 613.284 932.613 545.651 893.566"/>
+        <polygon class="sheep" points="772.651 762.566 840.284 723.519 840.284 801.613 772.651 762.566"/>
+        <polygon class="wood" points="166.651 412.566 234.284 373.519 234.284 451.613 166.651 412.566"/>
+        <polygon class="clay" points="166.651 675.566 234.284 636.519 234.284 714.613 166.651 675.566"/>
+        <text class="porttxt" transform="translate(315 199.404)"><tspan x="0" y="0">3:1</tspan></text>
+        <text class="porttxt" transform="translate(920 549.404)"><tspan x="0" y="0">3:1</tspan></text>
+        <text class="porttxt" transform="translate(565 899.404)"><tspan x="0" y="0">3:1</tspan></text>
+        <text class="porttxt" transform="translate(315 899.404)"><tspan x="0" y="0">3:1</tspan></text>
+        <text class="porttxt" transform="translate(565 199.404)"><tspan x="0" y="0">1:2</tspan></text>
+        <text class="porttxt" transform="translate(790 331.404)"><tspan x="0" y="0">1:2</tspan></text>
+        <text class="porttxt" transform="translate(790 769.404)"><tspan x="0" y="0">2:1</tspan></text>
+        <text class="porttxt" transform="translate(180 682.404)"><tspan x="0" y="0">2:1</tspan></text>
+        <text class="porttxt" transform="translate(180 419.404)"><tspan x="0" y="0">2:1</tspan></text>
+    </g>
+    </svg>
+  </div>
+
+  <div class = "msg-container">
+    <p id="msg"></p>
+  </div>
+
+  <script src= tileShuffle.js> </script> 
 </body>
 </html>
